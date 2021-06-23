@@ -72,4 +72,4 @@ But what if Y is not an integer? Even if Y was a float, this would still be an i
 
 ## Credits <!-- omit in toc -->
 
-This README was written based on the Stanford undergraduate course "Compilers" lectures available at [edX](https://learning.edx.org/course/course-v1:StanfordOnline+SOE.YCSCS1+3T2020/home).
+This README was written based on the Stanford undergraduate course "Compilers" lectures available at [edX](https://www.edx.org/course/compilers).
