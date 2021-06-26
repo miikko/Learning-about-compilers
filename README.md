@@ -12,14 +12,26 @@
 
 *divides source code into "tokens"*
 
+```
+Token == <class, lexeme>
+```
+
+Lexemes are the divided substrings of the original source code string.
+
+Example:
+
 `if x == y then z = 1; else z = 2;`
 
-* Keywords: `if`, `then`, `else`
-* Variables: `x`, `y`, `z`
-* Operators: `==`, `=`
-* Constants: `1`, `2`
+The above string is divided into tokens:
+
+* Keyword: `if`, `then`, `else`
+* Identifier: `x`, `y`, `z`
+* Operator: `==`, `=`
+* Number: `1`, `2`
 * Punctuation: `;`
-* Separators: ` `
+* Whitespace: ` `
+
+The token class names listed above are not standardized. Compilers for different programming languages can classify tokens differently.
 
 ### **2. Parsing**
 
