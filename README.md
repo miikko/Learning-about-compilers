@@ -38,12 +38,12 @@ The token classes listed above are not standardized. During programming language
 
 #### **Implementation (in progress)**
 
-1. Write a regular expression $R_i$ for each token class so that it matches each lexeme belonging to that class.
+1. Write a regular expression ***R<sub>i</sub>*** for each token class so that it matches each lexeme belonging to that class.
    - For example, for the Number class the following regular expression could be used: `\d+`  
-2. Form a union $R$ out of the regular expressions written in the first step ($R = R_1 | R_2 | R_3 | ...$). This union is supposed to match all the valid lexemes of the language.
-3. Iterate the input string $X$ sconsisting of $s = x_1...x_n$ characters. For $1<=i<=n$ check whether $R$ matches $s$.
-   - If it matches, remove $s$ from $X$.
-4. Repeat step 3 until $X$ is empty.
+2. Form a union ***R*** out of the regular expressions written in the first step (***R = R<sub>1</sub> | R<sub>2</sub> | R<sub>3</sub> | ...***). This union is supposed to match all the valid lexemes of the language.
+3. Iterate the input string ***X*** sconsisting of ***s = x<sub>1</sub>...x<sub>n</sub>*** characters. For ***1 <= i <= n*** check whether ***R*** matches ***s***.
+   - If it matches, remove ***s*** from ***X***.
+4. Repeat step 3 until ***X*** is empty.
 
 ### **2. Parsing**
 
