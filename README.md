@@ -3,6 +3,7 @@
 ## Compiler structure <!-- omit in toc -->
 
 - [**1. Lexical analysis**](#1-lexical-analysis)
+  - [**Implementation (in progress)**](#implementation-in-progress)
 - [**2. Parsing**](#2-parsing)
 - [**3. Semantic analysis**](#3-semantic-analysis)
 - [**4. Optimization**](#4-optimization)
@@ -16,22 +17,33 @@
 Token == <class, lexeme>
 ```
 
-Lexemes are the divided substrings of the original source code string.
+Lexemes are substrings of the original source code string.
 
-Example:
+**Example: Extracting tokens from a source code string.**
 
-`if x == y then z = 1; else z = 2;`
+```
+if x == y then z = 1; else z = 2;
+```
 
-The above string is divided into tokens:
+| Class       | Lexemes              |
+|-------------| ---------------------|
+| Keyword     | `if`, `then`, `else` |
+| Identifier  | `x`, `y`, `z`        |
+| Operator    | `==`, `=`            |
+| Number      | `1`, `2`             |
+| Punctuation | `;`                  |
+| Whitespace  | ` `                  |
 
-* Keyword: `if`, `then`, `else`
-* Identifier: `x`, `y`, `z`
-* Operator: `==`, `=`
-* Number: `1`, `2`
-* Punctuation: `;`
-* Whitespace: ` `
+The token classes listed above are not standardized. During programming language design, designers typically use [regular languages](https://en.wikipedia.org/wiki/Regular_language) to define the token classes and what strings belong in each of them. Regular languages are typically defined using regular expressions. Therefore regular expressions can be used for extracting tokens from source code.
 
-The token class names listed above are not standardized. Compilers for different programming languages can classify tokens differently.
+#### **Implementation (in progress)**
+
+1. Write a regular expression $R_i$ for each token class so that it matches each lexeme belonging to that class.
+   - For example, for the Number class the following regular expression could be used: `\d+`  
+2. Form a union $R$ out of the regular expressions written in the first step ($R = R_1 | R_2 | R_3 | ...$). This union is supposed to match all the valid lexemes of the language.
+3. Iterate the input string $X$ sconsisting of $s = x_1...x_n$ characters. For $1<=i<=n$ check whether $R$ matches $s$.
+   - If it matches, remove $s$ from $X$.
+4. Repeat step 3 until $X$ is empty.
 
 ### **2. Parsing**
 
