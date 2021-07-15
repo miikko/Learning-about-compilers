@@ -3,7 +3,7 @@
 ## Compiler structure <!-- omit in toc -->
 
 - [**1. Lexical analysis**](#1-lexical-analysis)
-  - [**Implementation (in progress)**](#implementation-in-progress)
+  - [**Implementation**](#implementation)
 - [**2. Parsing**](#2-parsing)
 - [**3. Semantic analysis**](#3-semantic-analysis)
 - [**4. Optimization**](#4-optimization)
@@ -36,14 +36,18 @@ if x == y then z = 1; else z = 2;
 
 The token classes listed above are not standardized. During programming language design, designers typically use [regular languages](https://en.wikipedia.org/wiki/Regular_language) to define the token classes and what strings belong in each of them. Regular languages are typically defined using regular expressions. Therefore regular expressions can be used for extracting tokens from source code.
 
-#### **Implementation (in progress)**
+#### **Implementation**
 
 1. Write a regular expression ***R<sub>i</sub>*** for each token class so that it matches each lexeme belonging to that class.
-   - For example, for the Number class the following regular expression could be used: `\d+`  
-2. Form a union ***R*** out of the regular expressions written in the first step (***R = R<sub>1</sub> | R<sub>2</sub> | R<sub>3</sub> | ...***). This union is supposed to match all the valid lexemes of the language.
-3. Iterate the input string ***X*** sconsisting of ***s = x<sub>1</sub>...x<sub>n</sub>*** characters. For ***1 <= i <= n*** check whether ***R*** matches ***s***.
-   - If it matches, remove ***s*** from ***X***.
-4. Repeat step 3 until ***X*** is empty.
+   - For example, for the Number class the following regular expression could be used: `"\d+"`
+   - Make sure to assign a priority to each ***R<sub>i<sub>***. This will help in step 4, when classifying lexemes that match with multiple regular expressions.
+2. Iterate the input string ***S = c<sub>0</sub>...c<sub>n</sub>***. For each ***c<sub>i</sub>*** check whether any ***R<sub>i</sub>*** matches it. In case of a match, go to step 3. If there are no matches, display an error message and exit the program.   
+3. Scan the input string forward ***c<sub>i</sub>...c<sub>j</sub>***, until no ***R<sub>i</sub>*** matches the scanned part.
+   - Having token classes with shared lexemes often means one cannot be certain of a lexeme's class based on the first character. For example, having `"[a-zA-Z]+"` as the regular expression for identifier tokens causes it to match with the first character of `"if"`, which is commonly classified as a keyword token.
+4. Move the scanner back one index and store the lexeme together with its matching class to a token. If there are multiple matching classes, choose the one with the highest priority.
+5. Loop back to step 2 and resume iteration of ***S*** from the last scanned character ***c<sub>j</sub>***.
+
+An alternative to implementing the aforementioned steps is to use a tool that generates a lexical analysers. [Lex](https://en.wikipedia.org/wiki/Lex_(software)) is a popular tool used for generating lexical analysers (programs responsible for lexical analysis).
 
 ### **2. Parsing**
 
