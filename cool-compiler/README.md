@@ -6,9 +6,13 @@ Write a Cool (Classroom Object Oriented Language) compiler by following the inst
 
 The compiler will have 4 of the 5 parts described in the top level [README.md](../README.md). Optimization is left out (might add it later).
 
-The compiler will be developed and tested inside a Docker container running Ubuntu 18.04. The `cool-compiler/src` directory will be bind-mounted to the container's `cool` directory.
+The compiler will be developed and tested inside a Docker container running Ubuntu 18.04. The `cool-compiler/shared` directory will be bind-mounted to the container's `cool` directory so that files can be dynamically edited on the host machine.
 
-This project includes a Cool reference compiler that will be used for testing.
+This project includes a Cool reference compiler (`coolc`) that will be used for testing.
+
+## Completed assignments/compiler parts
+
+1. [Lexical analyser](shared/lexer/)
 
 ## Docker container setup
 
@@ -19,8 +23,8 @@ This project includes a Cool reference compiler that will be used for testing.
 
 ## Commands (inside Docker container)
 
-* `coolc <my-cool-file.cl>`: Compiles an assembly file from the given Cool file using the reference compiler.
-* `spim <my-cool-file.s>`: Executes the compiled assembly file in a [SPIM](https://en.wikipedia.org/wiki/SPIM) simulator.   
+* `$ coolc <my-cool-file.cl>`: Compiles an assembly file from the given Cool file using the reference compiler.
+* `$ spim <my-cool-file.s>`: Executes the compiled assembly file in a [SPIM](https://en.wikipedia.org/wiki/SPIM) simulator.   
 
 ## Credits
 

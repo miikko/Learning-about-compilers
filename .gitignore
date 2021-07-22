@@ -1,2 +1,8 @@
+# Archive files
 *.tar.gz
+# Compiled COOL files
 *.s
+# Compiled Java files
+*.class
+# Compiler course grading folder. One should run the associated Perl script to generate it
+grading/ 

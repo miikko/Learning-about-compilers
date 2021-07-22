@@ -1,1 +1,1 @@
-docker run -v $PWD/src:/cool -it compiler-work-img
+docker run -v $PWD/shared:/cool -it compiler-work-img
