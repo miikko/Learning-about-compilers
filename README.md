@@ -5,6 +5,7 @@
 - [**1. Lexical analysis**](#1-lexical-analysis)
   - [**Implementation**](#implementation)
 - [**2. Parsing**](#2-parsing)
+  - [**Implementation**](#implementation-1)
 - [**3. Semantic analysis**](#3-semantic-analysis)
 - [**4. Optimization**](#4-optimization)
 - [**5. Code generation**](#5-code-generation)
@@ -17,7 +18,7 @@
 Token == <class, lexeme>
 ```
 
-Lexemes are substrings of the original source code string.
+Lexemes are substrings of the original source code string. In some cases, lexemes can be left out from tokens as they provide no further information. For example a token with the class *Plus* can be expressed as `<Plus>` and expanded to `<Plus, "+">`.
 
 **Example: Extracting tokens from a source code string.**
 
@@ -51,11 +52,35 @@ An alternative to implementing the aforementioned steps is to use a tool that ge
 
 ### **2. Parsing**
 
-*forms a tree from "tokens" received from lexical analysis*
+*forms an Abstract Syntax Tree from "tokens" received from lexical analysis*
 
-`if x == y then z = 1; else z = 2;`
+1. Define a [CFG](https://en.wikipedia.org/wiki/Context-free_grammar) (Context-Free Grammar) for the source language.
+2. Build [a parse tree](https://en.wikipedia.org/wiki/Parse_tree) from the tokens by using the defined CFG
+3. (Compress the parse tree to an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree))
 
-![parse-tree](./imgs/parse-tree.PNG)
+In some cases, the parse tree built in step 2. can already be treated as an AST.
+
+**Example: Constructing an AST from an arithmetic expression**
+
+```
+5 + (2 + 3)
+```
+
+CFG: `E -> int | (E) | E + E`
+
+Tokenized source: `<int,5> <plus> <l_paren> <int,2> <plus> <int,3> <r_paren>`
+
+Parse tree:
+
+![parse-tree](./imgs/parse_tree.PNG)
+
+AST:
+
+![abstact-syntax-tree](./imgs/ast.PNG)
+
+#### **Implementation**
+
+**TODO**
 
 ### **3. Semantic analysis**
 
