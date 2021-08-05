@@ -80,7 +80,7 @@ AST:
 
 #### **Implementation**
 
-**TODO**
+See [completed parser assignment](cool-compiler/shared/parser/).
 
 ### **3. Semantic analysis**
 
