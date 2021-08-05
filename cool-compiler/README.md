@@ -13,6 +13,7 @@ This project includes a Cool reference compiler (`coolc`) that will be used for 
 ## Completed assignments/compiler parts
 
 1. [Lexical analyser](shared/lexer/)
+2. [Parser](shared/parser/)
 
 ## Docker container setup
 
